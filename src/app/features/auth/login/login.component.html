@@ -1,30 +1,69 @@
-<div class="login-container">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-      <h2>Login</h2>
-  
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          formControlName="email"
-          placeholder="Enter your email"
-          class="input"
-        />
-      </div>
-  
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          formControlName="password"
-          placeholder="Enter your password"
-          class="input"
-        />
-      </div>
-  
-      <button type="submit" class="btn">Login</button>
-    </form>
-  </div>
-  
+<div class="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    class="w-full max-w-md bg-white p-8 rounded-xl shadow-lg"
+  >
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Login</h2>
+
+    <!-- PASSWORD BASED login -->
+    <div class="mb-4">
+      <label for="email" class="block text-sm font-medium text-gray-600 mb-1">Email</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        [value]="email()"
+        placeholder="you@example.com"
+        class="placeholder-gray-400 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="password" class="block text-sm font-medium text-gray-600 mb-1">Password</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        [value]="password()"
+        placeholder="your password"
+        class="placeholder-gray-400 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <div class="flex items-center justify-between mb-6">
+      <label class="flex items-center text-sm text-gray-600">
+        <input type="checkbox" [value]="remember()" (change)="onRememberedChange($event)" class="mr-2 rounded border-gray-300" />
+        Remember me
+      </label>
+      <a href="#" class="text-sm text-blue-600 hover:underline">Forgot password?</a>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition"
+    >
+      Login
+    </button>
+
+    <!-- OAUTH2 login -->
+    <div class="my-6 border-t text-center text-sm text-gray-500 relative">
+      <span class="bg-white px-2 absolute -top-3 left-1/2 transform -translate-x-1/2">or</span>
+    </div>
+
+    <div class="flex justify-between gap-3">
+      <button type="button" (click)="onSocialLogin('google')" class="flex-1 py-2 border rounded-md flex items-center justify-center hover:bg-gray-100">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="h-5 w-5 mr-2" />
+        Google
+      </button>
+      <button type="button" (click)="onSocialLogin('apple')" class="flex-1 py-2 border rounded-md flex items-center justify-center hover:bg-gray-100">
+        <img src="https://www.svgrepo.com/show/511330/apple-173.svg" alt="Apple" class="h-5 w-5 mr-2" />
+        Apple
+      </button>
+      <button type="button" (click)="onSocialLogin('facebook')" class="flex-1 py-2 border rounded-md flex items-center justify-center hover:bg-gray-100">
+        <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook" class="h-5 w-5 mr-2" />
+        Facebook
+      </button>
+    </div>
+  </form>
+</div>
